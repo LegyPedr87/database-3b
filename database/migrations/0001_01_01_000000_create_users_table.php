@@ -12,14 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->id(); //key primary
+
+       // $table->foreign('id_company');
+        //    ->references ('id') //A coluna da tabela companies
+         //   ->one('companies') //A tabela que estamos referenciando
+          //  ->onDelete('cascade');
+
+            $table->string('cpf',11)-> unique();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('email')-> unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('phone', 13)-> unique(); 
+            $table->boolean('is_verified') -> nullable();
+            $table->string('role');
+            $table->remembertoken();
             $table->timestamps();
         });
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
