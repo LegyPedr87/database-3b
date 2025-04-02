@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Route;
  // Rotas de autenticação
  Route::post('/login', [AuthController::class, 'login']);
  Route::post('/register', [AuthController::class, 'register']);
+
+ Route::resource('users', UserController::class);
+ Route::resource('invoices', InvoiceController::class);
+ Route::resource('finances', FinanceController::class);
  
  // Grupo de rotas protegidas por autenticação Sanctum
  Route::middleware('auth:sanctum')->group(function () {
